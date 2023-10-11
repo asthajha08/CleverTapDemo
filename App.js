@@ -13,7 +13,11 @@ import CleverTap from 'clevertap-react-native';
 const App = () => {
   useEffect(() => {
     const request = async () => {
-      await requestNotifications();
+      try {
+        await requestNotifications();
+      } catch (err) {
+        console.log('+++ ERR +++', err);
+      }
     };
 
     CleverTap.registerForPush();
@@ -26,7 +30,9 @@ const App = () => {
       true,
     );
 
-    request();
+    setTimeout(() => {
+      request();
+    }, 1000);
 
     CleverTap.getCleverTapID((err, res) => {
       console.log('CleverTapID', res, err);
