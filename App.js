@@ -32,7 +32,7 @@ const App = () => {
 
     setTimeout(() => {
       request();
-    }, 1000);
+    }, 800);
 
     CleverTap.getCleverTapID((err, res) => {
       console.log('CleverTapID', res, err);
