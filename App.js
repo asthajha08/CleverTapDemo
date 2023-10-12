@@ -12,6 +12,11 @@ import CleverTap from 'clevertap-react-native';
 
 const App = () => {
   useEffect(() => {
+    CleverTap.onUserLogin({
+      Name: 'Aakruti Kumari',
+      Email: 'test@gmail.com',
+    });
+
     const request = async () => {
       try {
         await requestNotifications();
@@ -32,7 +37,7 @@ const App = () => {
 
     setTimeout(() => {
       request();
-    }, 800);
+    }, 500);
 
     CleverTap.getCleverTapID((err, res) => {
       console.log('CleverTapID', res, err);
@@ -40,11 +45,7 @@ const App = () => {
   }, []);
 
   const sendEvent = useCallback(() => {
-    CleverTap.onUserLogin({
-      Name: 'Aakruti Kumari',
-      Email: 'test@gmail.com',
-    });
-    CleverTap.recordEvent('Product Viewed', {
+    CleverTap.recordEvent('Product_Viewed', {
       'Product ID': 1,
       'Product Image':
         'https://d35fo82fjcw0y8.cloudfront.net/2018/07/26020307/customer-success-clevertap.jpg ',
